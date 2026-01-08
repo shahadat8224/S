@@ -49,6 +49,118 @@
         .hindi-flag {
             background: linear-gradient(135deg, #ff9933 33%, #ffffff 33%, #ffffff 66%, #138808 66%);
         }
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+        }
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(14, 165, 233, 0.2);
+            z-index: 999;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+        .mobile-nav.active {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            .desktop-nav {
+                display: none !important;
+            }
+            .mobile-nav {
+                display: block;
+            }
+        }
+        /* Remove click from profile photo container */
+        .profile-photo-container {
+            cursor: default;
+            pointer-events: none;
+        }
+        .profile-photo-container a {
+            cursor: default;
+            pointer-events: none;
+        }
+        /* New CSS additions for smooth scrolling and mobile responsiveness */
+        html {
+            scroll-behavior: smooth;
+        }
+        @media (max-width: 640px) {
+            .hero-title {
+                font-size: 2.5rem;
+                line-height: 1.2;
+            }
+            .hero-description {
+                font-size: 1.125rem;
+                padding: 0 1rem;
+            }
+            .glass-card {
+                margin: 0.5rem;
+                padding: 1.5rem;
+            }
+            .grid-3-col {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .grid-2-col {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+        @media (max-width: 768px) {
+            a, button {
+                min-height: 44px;
+                min-width: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .mobile-nav a {
+                padding: 12px 16px;
+            }
+            .hero-buttons a, .hero-buttons button {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+        }
+        body {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+        .email-copied {
+            animation: emailCopied 2s ease-in-out;
+        }
+        @keyframes emailCopied {
+            0% {
+                transform: scale(1);
+                background: linear-gradient(135deg, #0ea5e9, #3b82f6);
+            }
+            50% {
+                transform: scale(1.05);
+                background: linear-gradient(135deg, #10b981, #059669);
+            }
+            100% {
+                transform: scale(1);
+                background: linear-gradient(135deg, #0ea5e9, #3b82f6);
+            }
+        }
     </style>
 </head>
 <body class="bg-[#0f172a] text-slate-300">
@@ -57,35 +169,62 @@
     <nav class="sticky top-0 z-50 glass-card py-4">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
             <a href="#" class="text-xl font-bold text-white">Shahadat<span class="text-sky-400">Alif</span></a>
-            <div class="hidden md:flex space-x-8">
+            <div class="desktop-nav flex space-x-8">
                 <a href="#home" class="hover:text-sky-400 transition">Home</a>
                 <a href="#about" class="hover:text-sky-400 transition">About</a>
                 <a href="#experience" class="hover:text-sky-400 transition">Experience</a>
                 <a href="#skills" class="hover:text-sky-400 transition">Skills</a>
                 <a href="#education" class="hover:text-sky-400 transition">Education</a>
+                <a href="#personal" class="hover:text-sky-400 transition">Personal</a>
+                <a href="#references" class="hover:text-sky-400 transition">References</a>
                 <a href="#contact" class="hover:text-sky-400 transition">Contact</a>
             </div>
-            <a href="#contact" class="bg-sky-600 hover:bg-sky-700 text-white px-4 py-2 rounded-lg transition font-medium">Connect</a>
+            <!-- Updated Connect button with Facebook link -->
+            <a href="https://www.facebook.com/shahadat8224" target="_blank" class="bg-sky-600 hover:bg-sky-700 text-white px-4 py-2 rounded-lg transition font-medium">
+                <i class="fab fa-facebook mr-2"></i>Connect
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-ellipsis-v"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Navigation Menu -->
+        <div class="mobile-nav" id="mobileNav">
+            <div class="flex flex-col p-4 space-y-3">
+                <a href="#home" class="hover:text-sky-400 transition py-2 px-4 rounded-lg hover:bg-sky-500/10">Home</a>
+                <a href="#about" class="hover:text-sky-400 transition py-2 px-4 rounded-lg hover:bg-sky-500/10">About</a>
+                <a href="#experience" class="hover:text-sky-400 transition py-2 px-4 rounded-lg hover:bg-sky-500/10">Experience</a>
+                <a href="#skills" class="hover:text-sky-400 transition py-2 px-4 rounded-lg hover:bg-sky-500/10">Skills</a>
+                <a href="#education" class="hover:text-sky-400 transition py-2 px-4 rounded-lg hover:bg-sky-500/10">Education</a>
+                <a href="#personal" class="hover:text-sky-400 transition py-2 px-4 rounded-lg hover:bg-sky-500/10">Personal Details</a>
+                <a href="#references" class="hover:text-sky-400 transition py-2 px-4 rounded-lg hover:bg-sky-500/10">References</a>
+                <a href="#contact" class="hover:text-sky-400 transition py-2 px-4 rounded-lg hover:bg-sky-500/10">Contact</a>
+                <!-- Add Facebook link to mobile menu too -->
+                <a href="https://www.facebook.com/shahadat8224" target="_blank" class="bg-sky-600 hover:bg-sky-700 text-white px-4 py-2 rounded-lg transition font-medium text-center">
+                    <i class="fab fa-facebook mr-2"></i>Connect on Facebook
+                </a>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section id="home" class="min-h-screen gradient-bg flex flex-col justify-center items-center text-center px-6 pt-20">
-        <div class="mb-8 p-2 rounded-full bg-gradient-to-r from-sky-500 to-blue-500 animate-pulse">
-            <!-- REPLACE THIS WITH YOUR PROFESSIONAL PHOTO -->
-            <a href="https://ibb.co.com/H0J2rv0"><img src="https://i.ibb.co.com/H0J2rv0/MY-photo.jpg" alt="Shahadat Islam Alif" class="w-40 h-40 rounded-full border-4 border-[#0f172a] object-cover">
+        <!-- Profile Photo (Non-clickable) -->
+        <div class="mb-8 p-2 rounded-full bg-gradient-to-r from-sky-500 to-blue-500 animate-pulse profile-photo-container">
+            <img src="https://i.ibb.co.com/H0J2rv0/MY-photo.jpg" alt="Shahadat Islam Alif" class="w-40 h-40 rounded-full border-4 border-[#0f172a] object-cover">
         </div>
         <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4">
             Shahadat Islam <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-300">Alif</span>
         </h1>
+        <!-- Badges (Non-clickable) -->
         <div class="inline-flex flex-wrap justify-center gap-3 mb-6">
-            <span class="badge-blue text-white px-4 py-2 rounded-full text-sm font-medium">
-                <i class="fas fa-bullhorn mr-2"></i>Digital Marketing Specialist
+            <span class="badge-blue text-white px-4 py-2 rounded-full text-sm font-medium cursor-default">
+                <i class="fas fa-search mr-2"></i>Content Researcher
             </span>
-            <span class="badge-green text-white px-4 py-2 rounded-full text-sm font-medium">
+            <span class="badge-green text-white px-4 py-2 rounded-full text-sm font-medium cursor-default">
                 <i class="fas fa-language mr-2"></i>Language Influencer
             </span>
-            <span class="bg-purple-500/20 text-purple-300 px-4 py-2 rounded-full text-sm font-medium">
+            <span class="bg-purple-500/20 text-purple-300 px-4 py-2 rounded-full text-sm font-medium cursor-default">
                 <i class="fas fa-chart-line mr-2"></i>Sales & Marketing Expert
             </span>
         </div>
@@ -93,9 +232,10 @@
             Bridging digital marketing with multilingual communication to create impactful campaigns and build meaningful connections across cultures.
         </p>
         <div class="flex flex-col sm:flex-row gap-4">
-            <a href="#contact" class="bg-gradient-to-r from-sky-600 to-blue-500 hover:from-sky-700 hover:to-blue-600 text-white px-8 py-3 rounded-lg font-semibold transition-all shadow-xl hover:shadow-sky-500/30 flex items-center justify-center">
+            <!-- Updated Get In Touch button with email functionality -->
+            <button id="emailBtn" class="bg-gradient-to-r from-sky-600 to-blue-500 hover:from-sky-700 hover:to-blue-600 text-white px-8 py-3 rounded-lg font-semibold transition-all shadow-xl hover:shadow-sky-500/30 flex items-center justify-center">
                 <i class="fas fa-envelope mr-2"></i> Get In Touch
-            </a>
+            </button>
             <a href="tel:+8801320828224" class="glass-card hover:bg-slate-800/80 border border-sky-500/30 px-8 py-3 rounded-lg font-semibold transition-all flex items-center justify-center">
                 <i class="fas fa-phone mr-2"></i> Call: 01320828224
             </a>
@@ -115,10 +255,10 @@
                 <div class="glass-card p-8 rounded-2xl md:col-span-2 hover-glow transition-all duration-300">
                     <h3 class="text-2xl font-bold text-white mb-6">Career Objective</h3>
                     <p class="text-lg mb-6 leading-relaxed">
-                        As a <span class="text-sky-400 font-semibold">Digital Marketing Specialist</span> and <span class="text-green-400 font-semibold">Language Influencer</span>, I thrive in dynamic environments where creativity meets strategy. My goal is to help businesses grow through innovative digital campaigns while leveraging my multilingual communication skills to bridge cultural gaps.
+                        As a <span class="text-sky-400 font-semibold">Content Researcher</span> and <span class="text-green-400 font-semibold">Language Influencer</span>, I thrive in dynamic environments where creativity meets strategy. My goal is to help businesses grow through innovative digital campaigns while leveraging my multilingual communication skills to bridge cultural gaps.
                     </p>
                     <p class="text-lg mb-6 leading-relaxed">
-                        I believe that authentic communication paired with data-driven marketing creates the most impactful results. Whether it's connecting with diverse audiences, optimizing online presence, or developing compelling content strategies, I approach every challenge with enthusiasm and a commitment to continuous learning.
+                        With experience in sales management, marketing, and supervision, I bring a comprehensive understanding of business operations and customer relationship management to every project.
                     </p>
                     <div class="flex flex-wrap gap-4 mt-8">
                         <div class="flex items-center bg-sky-500/10 px-4 py-2 rounded-full">
@@ -137,7 +277,8 @@
                         <h3 class="text-xl font-bold text-white mb-4 flex items-center"><i class="fas fa-info-circle text-sky-400 mr-3"></i>Quick Facts</h3>
                         <div class="space-y-3">
                             <p class="flex items-center"><i class="fas fa-map-marker-alt text-sky-400 mr-2"></i><span>Gazipur, Dhaka, Bangladesh</span></p>
-                            <p class="flex items-center"><i class="fas fa-envelope text-sky-400 mr-2"></i><span>shahadatislam8224@gmail.com</span></p>
+                            <!-- Updated email address -->
+                            <p class="flex items-center"><i class="fas fa-envelope text-sky-400 mr-2"></i><span>shahadatislamalf@gmail.com</span></p>
                             <p class="flex items-center"><i class="fas fa-phone text-sky-400 mr-2"></i><span>01320828224</span></p>
                             <p class="flex items-center"><i class="fas fa-calendar text-sky-400 mr-2"></i><span>Born: 27 Dec 2002</span></p>
                         </div>
@@ -149,21 +290,21 @@
                                 <div class="language-flag bengali-flag"></div>
                                 <div>
                                     <p class="font-medium">Bengali</p>
-                                    <p class="text-sm text-slate-500">Native Speaker</p>
+                                    <p class="text-sm text-slate-500">Mother tongue</p>
                                 </div>
                             </div>
                             <div class="flex items-center">
                                 <div class="language-flag english-flag"></div>
                                 <div>
                                     <p class="font-medium">English</p>
-                                    <p class="text-sm text-slate-500">Fluent - Reading, Writing, Speaking</p>
+                                    <p class="text-sm text-slate-500">Fluent in Reading, Writing and speaking</p>
                                 </div>
                             </div>
                             <div class="flex items-center">
                                 <div class="language-flag hindi-flag"></div>
                                 <div>
                                     <p class="font-medium">Hindi</p>
-                                    <p class="text-sm text-slate-500">Conversational Speaking</p>
+                                    <p class="text-sm text-slate-500">Speaking ability</p>
                                 </div>
                             </div>
                         </div>
@@ -179,50 +320,62 @@
             <h2 class="text-3xl font-bold text-white mb-12 flex items-center">
                 <span class="text-sky-500 mr-3"><i class="fas fa-briefcase"></i></span> Professional Experience
             </h2>
-            <div class="relative">
-                <!-- Timeline line -->
-                <div class="absolute left-4 md:left-1/2 h-full w-0.5 bg-gradient-to-b from-sky-500/50 to-blue-500/50 transform md:-translate-x-1/2"></div>
-
+            <div class="grid md:grid-cols-3 gap-6">
                 <!-- Experience 1 -->
-                <div class="relative mb-12 md:flex items-center">
-                    <div class="timeline-dot absolute left-2 md:left-1/2 w-4 h-4 bg-sky-500 rounded-full transform md:-translate-x-1/2 z-10"></div>
-                    <div class="glass-card ml-12 md:ml-0 md:w-5/12 md:pr-12 p-6 rounded-2xl hover-glow">
-                        <div class="text-sky-400 font-semibold mb-1"><i class="fas fa-user-tie mr-2"></i>Sales & Leadership</div>
+                <div class="glass-card p-6 rounded-2xl hover-glow transition-all duration-300">
+                    <div class="text-center mb-4">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-sky-500/20 rounded-full mb-4">
+                            <i class="fas fa-user-tie text-2xl text-sky-400"></i>
+                        </div>
                         <h3 class="text-xl font-bold text-white mb-2">Sales Manager</h3>
                         <p class="text-slate-400 mb-2">Zero Zone Electronics, Gazipur</p>
-                        <p class="text-sm text-slate-500 mb-3">1 Year Experience</p>
-                        <p class="text-slate-300 leading-relaxed">Led sales operations, managed customer relationships, and developed strategies to increase market share in the competitive electronics retail sector.</p>
                     </div>
-                    <div class="hidden md:block md:w-2/12 text-center text-slate-500 font-medium">2022-2023</div>
-                    <div class="md:w-5/12"></div>
+                    <div class="text-center mb-4">
+                        <span class="inline-block bg-sky-500/20 text-sky-400 px-3 py-1 rounded-full text-sm font-medium">
+                            <i class="fas fa-clock mr-1"></i> One Year Experience
+                        </span>
+                    </div>
+                    <p class="text-slate-300 leading-relaxed text-center">
+                        Led sales operations, managed customer relationships, and developed strategies to increase market share in the competitive electronics retail sector.
+                    </p>
                 </div>
 
                 <!-- Experience 2 -->
-                <div class="relative mb-12 md:flex items-center">
-                    <div class="timeline-dot absolute left-2 md:left-1/2 w-4 h-4 bg-blue-500 rounded-full transform md:-translate-x-1/2 z-10"></div>
-                    <div class="hidden md:block md:w-5/12 md:pr-12"></div>
-                    <div class="hidden md:block md:w-2/12 text-center text-slate-500 font-medium">2022</div>
-                    <div class="glass-card ml-12 md:ml-0 md:w-5/12 md:pl-12 p-6 rounded-2xl hover-glow">
-                        <div class="text-blue-400 font-semibold mb-1"><i class="fas fa-chart-line mr-2"></i>Digital Marketing</div>
+                <div class="glass-card p-6 rounded-2xl hover-glow transition-all duration-300">
+                    <div class="text-center mb-4">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-500/20 rounded-full mb-4">
+                            <i class="fas fa-chart-line text-2xl text-blue-400"></i>
+                        </div>
                         <h3 class="text-xl font-bold text-white mb-2">Marketing Officer</h3>
                         <p class="text-slate-400 mb-2">Best Electronics Online</p>
-                        <p class="text-sm text-slate-500 mb-3">3 Months Experience</p>
-                        <p class="text-slate-300 leading-relaxed">Developed and implemented online marketing strategies for electronic products, managed social media campaigns, and analyzed digital marketing performance metrics.</p>
                     </div>
+                    <div class="text-center mb-4">
+                        <span class="inline-block bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm font-medium">
+                            <i class="fas fa-clock mr-1"></i> Three Months Experience
+                        </span>
+                    </div>
+                    <p class="text-slate-300 leading-relaxed text-center">
+                        Developed and implemented online marketing strategies for electronic products, managed social media campaigns, and analyzed digital marketing performance metrics.
+                    </p>
                 </div>
 
                 <!-- Experience 3 -->
-                <div class="relative mb-12 md:flex items-center">
-                    <div class="timeline-dot absolute left-2 md:left-1/2 w-4 h-4 bg-sky-500 rounded-full transform md:-translate-x-1/2 z-10"></div>
-                    <div class="glass-card ml-12 md:ml-0 md:w-5/12 md:pr-12 p-6 rounded-2xl hover-glow">
-                        <div class="text-sky-400 font-semibold mb-1"><i class="fas fa-clipboard-check mr-2"></i>Supervisory Role</div>
+                <div class="glass-card p-6 rounded-2xl hover-glow transition-all duration-300">
+                    <div class="text-center mb-4">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-green-500/20 rounded-full mb-4">
+                            <i class="fas fa-clipboard-check text-2xl text-green-400"></i>
+                        </div>
                         <h3 class="text-xl font-bold text-white mb-2">Assistant Supervisor</h3>
                         <p class="text-slate-400 mb-2">Decent Electro LTD</p>
-                        <p class="text-sm text-slate-500 mb-3">3 Months Experience</p>
-                        <p class="text-slate-300 leading-relaxed">Assisted in supervising operations, coordinating team activities, and ensuring quality standards in electronic manufacturing processes.</p>
                     </div>
-                    <div class="hidden md:block md:w-2/12 text-center text-slate-500 font-medium">2021</div>
-                    <div class="md:w-5/12"></div>
+                    <div class="text-center mb-4">
+                        <span class="inline-block bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm font-medium">
+                            <i class="fas fa-clock mr-1"></i> Three Months Experience
+                        </span>
+                    </div>
+                    <p class="text-slate-300 leading-relaxed text-center">
+                        Assisted in supervising operations, coordinating team activities, and ensuring quality standards in electronic manufacturing processes.
+                    </p>
                 </div>
             </div>
         </div>
@@ -239,48 +392,48 @@
                 <div class="space-y-6">
                     <div>
                         <div class="flex justify-between mb-1">
-                            <span class="font-medium">Digital Marketing</span>
+                            <span class="font-medium">Microsoft Office Suite</span>
                             <span class="text-sky-400 font-bold">90%</span>
                         </div>
                         <div class="w-full bg-slate-700 rounded-full h-3">
                             <div class="skill-bar bg-gradient-to-r from-sky-500 to-blue-400 h-3 rounded-full" style="width: 90%;"></div>
                         </div>
+                        <p class="text-sm text-slate-500 mt-1">Word, Excel, Power Point - Advanced Proficiency</p>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium">Digital Marketing</span>
+                            <span class="text-green-400 font-bold">85%</span>
+                        </div>
+                        <div class="w-full bg-slate-700 rounded-full h-3">
+                            <div class="skill-bar bg-gradient-to-r from-green-500 to-emerald-400 h-3 rounded-full" style="width: 85%;"></div>
+                        </div>
                         <p class="text-sm text-slate-500 mt-1">Google Certified: Fundamentals of Digital Marketing</p>
                     </div>
                     <div>
                         <div class="flex justify-between mb-1">
-                            <span class="font-medium">Sales & Marketing</span>
-                            <span class="text-sky-400 font-bold">85%</span>
+                            <span class="font-medium">Web Development</span>
+                            <span class="text-purple-400 font-bold">80%</span>
                         </div>
                         <div class="w-full bg-slate-700 rounded-full h-3">
-                            <div class="skill-bar bg-gradient-to-r from-sky-500 to-blue-400 h-3 rounded-full" style="width: 85%;"></div>
+                            <div class="skill-bar bg-gradient-to-r from-purple-500 to-pink-400 h-3 rounded-full" style="width: 80%;"></div>
                         </div>
-                        <p class="text-sm text-slate-500 mt-1">Retail management, customer relations, strategy development</p>
-                    </div>
-                    <div>
-                        <div class="flex justify-between mb-1">
-                            <span class="font-medium">Multilingual Communication</span>
-                            <span class="text-green-400 font-bold">95%</span>
-                        </div>
-                        <div class="w-full bg-slate-700 rounded-full h-3">
-                            <div class="skill-bar bg-gradient-to-r from-green-500 to-emerald-400 h-3 rounded-full" style="width: 95%;"></div>
-                        </div>
-                        <p class="text-sm text-slate-500 mt-1">Bengali, English, Hindi - Content creation across languages</p>
+                        <p class="text-sm text-slate-500 mt-1">HTML, CSS, WordPress Website Customisation</p>
                     </div>
                 </div>
                 
                 <!-- Skill Tags & Certifications -->
                 <div>
-                    <h3 class="text-xl font-bold text-white mb-6">Technical & Professional Skills</h3>
+                    <h3 class="text-xl font-bold text-white mb-6">Technical Skills</h3>
                     <div class="flex flex-wrap gap-3 mb-8">
-                        <span class="px-4 py-2 bg-[#0f172a] border border-sky-500/30 rounded-full text-sky-400 font-medium hover-glow transition-all">Google Analytics</span>
-                        <span class="px-4 py-2 bg-[#0f172a] border border-sky-500/30 rounded-full text-sky-400 font-medium hover-glow transition-all">Microsoft Office</span>
-                        <span class="px-4 py-2 bg-[#0f172a] border border-sky-500/30 rounded-full text-sky-400 font-medium hover-glow transition-all">HTML/CSS</span>
-                        <span class="px-4 py-2 bg-[#0f172a] border border-sky-500/30 rounded-full text-sky-400 font-medium hover-glow transition-all">WordPress</span>
-                        <span class="px-4 py-2 bg-[#0f172a] border border-green-500/30 rounded-full text-green-400 font-medium hover-glow transition-all">Content Creation</span>
-                        <span class="px-4 py-2 bg-[#0f172a] border border-green-500/30 rounded-full text-green-400 font-medium hover-glow transition-all">Cross-cultural Communication</span>
+                        <span class="px-4 py-2 bg-[#0f172a] border border-sky-500/30 rounded-full text-sky-400 font-medium hover-glow transition-all">Microsoft Word</span>
+                        <span class="px-4 py-2 bg-[#0f172a] border border-sky-500/30 rounded-full text-sky-400 font-medium hover-glow transition-all">Microsoft Excel</span>
+                        <span class="px-4 py-2 bg-[#0f172a] border border-sky-500/30 rounded-full text-sky-400 font-medium hover-glow transition-all">Microsoft PowerPoint</span>
+                        <span class="px-4 py-2 bg-[#0f172a] border border-green-500/30 rounded-full text-green-400 font-medium hover-glow transition-all">HTML/CSS</span>
+                        <span class="px-4 py-2 bg-[#0f172a] border border-green-500/30 rounded-full text-green-400 font-medium hover-glow transition-all">WordPress</span>
+                        <span class="px-4 py-2 bg-[#0f172a] border border-purple-500/30 rounded-full text-purple-400 font-medium hover-glow transition-all">Google Analytics</span>
                         <span class="px-4 py-2 bg-[#0f172a] border border-sky-500/30 rounded-full text-sky-400 font-medium hover-glow transition-all">Social Media Marketing</span>
-                        <span class="px-4 py-2 bg-[#0f172a] border border-sky-500/30 rounded-full text-sky-400 font-medium hover-glow transition-all">Team Leadership</span>
+                        <span class="px-4 py-2 bg-[#0f172a] border border-sky-500/30 rounded-full text-sky-400 font-medium hover-glow transition-all">Digital Strategy</span>
                     </div>
                     
                     <!-- Certification Card -->
@@ -289,7 +442,7 @@
                             <i class="fas fa-certificate text-yellow-400 mr-2"></i> Google Certification
                         </h4>
                         <p class="text-slate-300 mb-2">Fundamentals of Digital Marketing</p>
-                        <p class="text-sm text-slate-500">Certificate ID: E5MPT5DRM</p>
+                        <p class="text-sm text-slate-500 font-mono">Certificate ID: E5MPT5DRM</p>
                         <p class="text-sm text-slate-400 mt-3">Completed comprehensive training in digital marketing fundamentals including SEO, social media, email marketing, and analytics.</p>
                     </div>
                 </div>
@@ -300,8 +453,605 @@
     <!-- Education Section -->
     <section id="education" class="py-20 bg-[#1e293b]/30 px-4">
         <div class="max-w-5xl mx-auto">
-
             <h2 class="text-3xl font-bold text-white mb-12 flex items-center">
+                <span class="text-sky-500 mr-3"><i class="fas fa-graduation-cap"></i></span> Academic Records
+            </h2>
+            
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <!-- University Education -->
+                <div class="glass-card p-6 rounded-2xl hover-glow transition-all duration-300">
+                    <div class="text-center mb-4">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-sky-500/20 rounded-full mb-4">
+                            <i class="fas fa-university text-2xl text-sky-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Bachelor of Social Science</h3>
+                        <p class="text-slate-400 mb-2">B.S.S. (Honours)</p>
+                    </div>
+                    <div class="space-y-2">
+                        <p class="flex items-center text-slate-300">
+                            <i class="fas fa-users text-sky-400 mr-2 w-5"></i>
+                            <span>Group: Humanities</span>
+                        </p>
+                        <p class="flex items-center text-slate-300">
+                            <i class="fas fa-school text-sky-400 mr-2 w-5"></i>
+                            <span>Bhawal Badre Alam Govt. University</span>
+                        </p>
+                        <p class="flex items-center text-slate-300">
+                            <i class="fas fa-map text-sky-400 mr-2 w-5"></i>
+                            <span>Board: Dhaka</span>
+                        </p>
+                        <p class="flex items-center text-slate-300">
+                            <i class="fas fa-hourglass-half text-sky-400 mr-2 w-5"></i>
+                            <span>Currently Pursuing</span>
+                        </p>
+                    </div>
+                </div>
 
+                <!-- College Education -->
+                <div class="glass-card p-6 rounded-2xl hover-glow transition-all duration-300">
+                    <div class="text-center mb-4">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-green-500/20 rounded-full mb-4">
+                            <i class="fas fa-graduation-cap text-2xl text-green-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Higher Secondary Certificate</h3>
+                        <p class="text-slate-400 mb-2">H.S.C</p>
+                    </div>
+                    <div class="space-y-2">
+                        <p class="flex items-center text-slate-300">
+                            <i class="fas fa-users text-green-400 mr-2 w-5"></i>
+                            <span>Group: Humanities</span>
+                        </p>
+                        <p class="flex items-center text-slate-300">
+                            <i class="fas fa-school text-green-400 mr-2 w-5"></i>
+                            <span>Kazi Azim Uddin University College</span>
+                        </p>
+                        <p class="flex items-center text-slate-300">
+                            <i class="fas fa-map text-green-400 mr-2 w-5"></i>
+                            <span>Board: Dhaka</span>
+                        </p>
+                        <p class="flex items-center text-slate-300">
+                            <i class="fas fa-calendar-check text-green-400 mr-2 w-5"></i>
+                            <span>Passing Year: 2022</span>
+                        </p>
+                    </div>
+                </div>
 
+                <!-- School Education -->
+                <div class="glass-card p-6 rounded-2xl hover-glow transition-all duration-300">
+                    <div class="text-center mb-4">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-purple-500/20 rounded-full mb-4">
+                            <i class="fas fa-school text-2xl text-purple-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Secondary School Certificate</h3>
+                        <p class="text-slate-400 mb-2">S.S.C</p>
+                    </div>
+                    <div class="space-y-2">
+                        <p class="flex items-center text-slate-300">
+                            <i class="fas fa-users text-purple-400 mr-2 w-5"></i>
+                            <span>Group: Humanities</span>
+                        </p>
+                        <p class="flex items-center text-slate-300">
+                            <i class="fas fa-school text-purple-400 mr-2 w-5"></i>
+                            <span>B.M.T.F High School</span>
+                        </p>
+                        <p class="flex items-center text-slate-300">
+                            <i class="fas fa-map text-purple-400 mr-2 w-5"></i>
+                            <span>Board: Dhaka</span>
+                        </p>
+                        <p class="flex items-center text-slate-300">
+                            <i class="fas fa-calendar-check text-purple-400 mr-2 w-5"></i>
+                            <span>Passing Year: 2020</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
 
+            <!-- Academic Timeline -->
+            <div class="glass-card p-8 rounded-2xl hover-glow">
+                <h3 class="text-2xl font-bold text-white mb-8 text-center">
+                    <i class="fas fa-timeline mr-2"></i> Academic Timeline
+                </h3>
+                <div class="relative">
+                    <!-- Timeline line -->
+                    <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-sky-500/50 to-blue-500/50"></div>
+                    
+                    <div class="space-y-12">
+                        <!-- SSC -->
+                        <div class="relative flex items-center">
+                            <div class="timeline-dot absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-purple-500 rounded-full z-10"></div>
+                            <div class="w-5/12 pr-6 text-right">
+                                <div class="text-purple-400 font-semibold mb-1">Completed: 2020</div>
+                                <h4 class="text-lg font-bold text-white">Secondary School Certificate</h4>
+                                <p class="text-slate-400">Humanities Group</p>
+                            </div>
+                            <div class="w-2/12"></div>
+                            <div class="w-5/12 pl-6">
+                                <h4 class="text-lg font-bold text-white">B.M.T.F High School</h4>
+                                <p class="text-slate-300">Dhaka Board</p>
+                            </div>
+                        </div>
+                        
+                        <!-- HSC -->
+                        <div class="relative flex items-center">
+                            <div class="timeline-dot absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-green-500 rounded-full z-10"></div>
+                            <div class="w-5/12 pr-6 text-right">
+                                <h4 class="text-lg font-bold text-white">Kazi Azim Uddin University College</h4>
+                                <p class="text-slate-300">Dhaka Board</p>
+                            </div>
+                            <div class="w-2/12 text-center">
+                                <div class="text-green-400 font-semibold">Completed: 2022</div>
+                            </div>
+                            <div class="w-5/12 pl-6">
+                                <h4 class="text-lg font-bold text-white">Higher Secondary Certificate</h4>
+                                <p class="text-slate-400">Humanities Group</p>
+                            </div>
+                        </div>
+                        
+                        <!-- BSS -->
+                        <div class="relative flex items-center">
+                            <div class="timeline-dot absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-sky-500 rounded-full z-10"></div>
+                            <div class="w-5/12 pr-6 text-right">
+                                <div class="text-sky-400 font-semibold mb-1">2023 - Present</div>
+                                <h4 class="text-lg font-bold text-white">Bachelor of Social Science</h4>
+                                <p class="text-slate-400">B.S.S. (Honours) - Humanities</p>
+                            </div>
+                            <div class="w-2/12"></div>
+                            <div class="w-5/12 pl-6">
+                                <h4 class="text-lg font-bold text-white">Bhawal Badre Alam Govt. University</h4>
+                                <p class="text-slate-300">Dhaka Board - Currently Pursuing</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Details Section -->
+    <section id="personal" class="py-20 px-4">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-12 flex items-center">
+                <span class="text-sky-500 mr-3"><i class="fas fa-user-circle"></i></span> Personal Details
+            </h2>
+            
+            <div class="glass-card p-8 rounded-2xl hover-glow">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Left Column -->
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-6">Personal Information</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="bg-sky-500/10 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-user text-sky-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">Full Name</h4>
+                                    <p class="text-slate-300">Shahadat Islam Alif</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-sky-500/10 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-male text-sky-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">Father's Name</h4>
+                                    <p class="text-slate-300">Saiful Islam</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-sky-500/10 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-female text-sky-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">Mother's Name</h4>
+                                    <p class="text-slate-300">Shirena Begum</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-sky-500/10 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-map-marker-alt text-sky-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">Permanent Address</h4>
+                                    <p class="text-slate-300">House no: 115/2, village: Marialy, Thana: Joydebpur<br>
+                                    District: Gazipur Sadar-1700</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Column -->
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-6">Additional Information</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="bg-green-500/10 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-birthday-cake text-green-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">Date of Birth</h4>
+                                    <p class="text-slate-300">27th December 2002 (27/12/2002)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-4 mt-6">
+                                <div>
+                                    <h4 class="font-bold text-white mb-1">Gender</h4>
+                                    <p class="text-slate-300">Male</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white mb-1">Marital Status</h4>
+                                    <p class="text-slate-300">Single</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white mb-1">Height</h4>
+                                    <p class="text-slate-300">5'10"</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white mb-1">Religion</h4>
+                                    <p class="text-slate-300">Islam</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white mb-1">Nationality</h4>
+                                    <p class="text-slate-300">Bangladeshi</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white mb-1">Blood Group</h4>
+                                    <p class="text-slate-300">A+ (Positive)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start mt-6">
+                                <div class="bg-red-500/10 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-id-card text-red-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">National ID Number</h4>
+                                    <p class="text-slate-300 font-mono">2410850057</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- References Section -->
+    <section id="references" class="py-20 bg-[#1e293b]/30 px-4">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-12 flex items-center">
+                <span class="text-sky-500 mr-3"><i class="fas fa-users"></i></span> References
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Reference 1 -->
+                <div class="glass-card p-6 rounded-2xl hover-glow">
+                    <div class="flex items-start mb-4">
+                        <div class="bg-sky-500/20 p-3 rounded-full mr-4">
+                            <i class="fas fa-user-graduate text-sky-400 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Imran Ahammed Shohel</h3>
+                            <p class="text-slate-400">Lecturer</p>
+                            <p class="text-sm text-slate-500 mt-1">B.Sc (Hons), M.Sc (CU)</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <p class="flex items-center text-slate-300">
+                            <i class="fas fa-university mr-2 text-sky-400"></i>
+                            <span>Kazi Azim Uddin University College</span>
+                        </p>
+                        <p class="flex items-center text-slate-300">
+                            <i class="fas fa-phone mr-2 text-sky-400"></i>
+                            <span>Cell: 01745-066616</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Reference 2 -->
+                <div class="glass-card p-6 rounded-2xl hover-glow">
+                    <div class="flex items-start mb-4">
+                        <div class="bg-green-500/20 p-3 rounded-full mr-4">
+                            <i class="fas fa-briefcase text-green-400 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Mahidul Islam</h3>
+                            <p class="text-slate-400">Assistant General Manager (Operation)</p>
+                            <p class="text-sm text-slate-500 mt-1">PRAN-RFL Center</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <p class="flex items-center text-slate-300">
+                            <i class="fas fa-building mr-2 text-green-400"></i>
+                            <span>105 Pragati Sarani, Middle Badda, Dhaka</span>
+                        </p>
+                        <p class="flex items-center text-slate-300">
+                            <i class="fas fa-phone mr-2 text-green-400"></i>
+                            <span>Cell: 01844-658167</span>
+                        </p>
+                        <p class="text-sm text-slate-400 mt-2 italic">
+                            Former: Best Buy Electronics Online, Gazipur Sadar-1700
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Note -->
+            <div class="mt-8 text-center text-slate-400 text-sm">
+                <p><i class="fas fa-info-circle mr-2"></i>References available upon request</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-12 flex items-center">
+                <span class="text-sky-500 mr-3"><i class="fas fa-envelope"></i></span> Contact Information
+            </h2>
+            
+            <div class="glass-card p-8 rounded-2xl hover-glow">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Contact Information -->
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-sky-500/10 p-3 rounded-lg mr-4">
+                                <i class="fas fa-phone text-sky-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white">Phone Number</h4>
+                                <p class="text-slate-300 text-lg">+880 1320 828224</p>
+                                <p class="text-slate-500 text-sm">Available: 9:00 AM - 8:00 PM</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-sky-500/10 p-3 rounded-lg mr-4">
+                                <i class="fas fa-envelope text-sky-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white">Email Address</h4>
+                                <!-- Updated email address -->
+                                <p class="text-slate-300 text-lg">shahadatislamalf@gmail.com</p>
+                                <p class="text-slate-500 text-sm">Response within 24 hours</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-sky-500/10 p-3 rounded-lg mr-4">
+                                <i class="fas fa-map-marker-alt text-sky-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white">Location</h4>
+                                <p class="text-slate-300">Gazipur, Dhaka, Bangladesh</p>
+                                <p class="text-slate-500 text-sm">Available for remote work worldwide</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-sky-500/10 p-3 rounded-lg mr-4">
+                                <i class="fas fa-home text-sky-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white">Permanent Address</h4>
+                                <p class="text-slate-300">House no: 115/2, Marialy, Joydebpur<br>Gazipur Sadar-1700</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Call to Action -->
+                    <div class="flex flex-col justify-center items-center text-center p-6">
+                        <h3 class="text-2xl font-bold text-white mb-4">Let's Work Together</h3>
+                        <p class="text-slate-400 mb-6">
+                            Interested in collaborating or have a project in mind? Feel free to reach out!
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <!-- Updated email button -->
+                            <button id="contactEmailBtn" class="bg-gradient-to-r from-sky-600 to-blue-500 hover:from-sky-700 hover:to-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition-all shadow-xl hover:shadow-sky-500/30 flex items-center justify-center">
+                                <i class="fas fa-paper-plane mr-2"></i> Send Email
+                            </button>
+                            <a href="tel:+8801320828224" class="glass-card hover:bg-slate-800/80 border border-sky-500/30 px-6 py-3 rounded-lg font-semibold transition-all flex items-center justify-center">
+                                <i class="fas fa-phone mr-2"></i> Call Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 glass-card border-t border-sky-500/20">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <p class="text-white font-bold text-xl mb-2">Shahadat Islam Alif</p>
+            <p class="text-slate-400 mb-4">Content Researcher & Language Influencer</p>
+            <div class="flex flex-wrap justify-center gap-4 text-sm text-slate-500 mb-4">
+                <span><i class="fas fa-id-card mr-1"></i> NID: 2410850057</span>
+                <span><i class="fas fa-tint mr-1"></i> Blood Group: A+</span>
+                <span><i class="fas fa-map-marker-alt mr-1"></i> Gazipur, Dhaka</span>
+            </div>
+            <p class="text-slate-500 text-sm">&copy; 2024 Shahadat Islam Alif. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Navigation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileNav = document.getElementById('mobileNav');
+            const emailBtn = document.getElementById('emailBtn');
+            const contactEmailBtn = document.getElementById('contactEmailBtn');
+            const emailAddress = 'shahadatislamalf@gmail.com';
+            
+            // Function to handle email copying with animation
+            function handleEmailCopy(button) {
+                // Create a temporary textarea to copy text
+                const tempTextArea = document.createElement('textarea');
+                tempTextArea.value = emailAddress;
+                document.body.appendChild(tempTextArea);
+                tempTextArea.select();
+                tempTextArea.setSelectionRange(0, 99999); // For mobile devices
+                
+                try {
+                    // Copy the text
+                    const successful = document.execCommand('copy');
+                    if (successful) {
+                        // Save original button text
+                        const originalText = button.innerHTML;
+                        
+                        // Add animation class
+                        button.classList.add('email-copied');
+                        button.innerHTML = '<i class="fas fa-check mr-2"></i> Email Copied!';
+                        
+                        // Revert after 2 seconds
+                        setTimeout(() => {
+                            button.classList.remove('email-copied');
+                            button.innerHTML = originalText;
+                        }, 2000);
+                        
+                        // Also provide option to open email client
+                        setTimeout(() => {
+                            if (confirm('Email copied! Would you like to open your email client?')) {
+                                window.location.href = `mailto:${emailAddress}`;
+                            }
+                        }, 2100);
+                    }
+                } catch (err) {
+                    console.error('Failed to copy: ', err);
+                    // Fallback: open email client directly
+                    window.location.href = `mailto:${emailAddress}`;
+                }
+                
+                // Remove the temporary textarea
+                document.body.removeChild(tempTextArea);
+            }
+            
+            // Toggle mobile menu when button is clicked
+            mobileMenuBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mobileNav.classList.toggle('active');
+                
+                // Change icon based on menu state
+                const icon = mobileMenuBtn.querySelector('i');
+                if (mobileNav.classList.contains('active')) {
+                    icon.classList.remove('fa-ellipsis-v');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-ellipsis-v');
+                }
+            });
+            
+            // Email button functionality with animation
+            emailBtn.addEventListener('click', function() {
+                handleEmailCopy(emailBtn);
+            });
+            
+            // Contact section email button functionality
+            contactEmailBtn.addEventListener('click', function() {
+                handleEmailCopy(contactEmailBtn);
+            });
+            
+            // Close mobile menu when a link is clicked
+            const mobileLinks = document.querySelectorAll('.mobile-nav a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileNav.classList.remove('active');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-ellipsis-v');
+                });
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!mobileNav.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+                    mobileNav.classList.remove('active');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-ellipsis-v');
+                }
+            });
+            
+            // Close mobile menu on escape key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape' && mobileNav.classList.contains('active')) {
+                    mobileNav.classList.remove('active');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-ellipsis-v');
+                }
+            });
+            
+            // Enhanced smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        // Close mobile menu if open
+                        if (mobileNav.classList.contains('active')) {
+                            mobileNav.classList.remove('active');
+                            const icon = mobileMenuBtn.querySelector('i');
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-ellipsis-v');
+                        }
+                        
+                        // Smooth scroll to target
+                        const headerOffset = 80;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Animate skill bars when they come into view
+            const skillBars = document.querySelectorAll('.skill-bar');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const width = entry.target.style.width;
+                        entry.target.style.width = '0%';
+                        setTimeout(() => {
+                            entry.target.style.width = width;
+                        }, 300);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { 
+                threshold: 0.5,
+                rootMargin: '0px 0px -50px 0px' // Trigger animation when element is 50px from viewport
+            });
+            
+            skillBars.forEach(bar => {
+                observer.observe(bar);
+            });
+            
+            // Better touch experience - prevent double tap zoom on buttons
+            document.querySelectorAll('button, a').forEach(element => {
+                element.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.98)';
+                });
+                
+                element.addEventListener('touchend', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
