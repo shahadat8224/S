@@ -1,3 +1,15 @@
+
+
+  // This checks if the user is on your GitHub link
+  if (window.location.hostname === "shahdat8224.github.io") {
+    // If yes, it jumps to your new Vercel link instantly
+    window.location.href = "https://shahdat8224.vercel.app";
+  }
+    
+
+
+
+
 <div id="ai-chat-container">
     <div id="ai-chat-window" style="display:none; position:fixed; bottom:80px; right:20px; width:300px; height:400px; background:white; border:1px solid #ccc; border-radius:10px; flex-direction:column; box-shadow:0px 0px 15px rgba(0,0,0,0.2); z-index:1000;">
         <div style="background:#007bff; color:white; padding:10px; border-radius:10px 10px 0 0;">Shahdat's AI Assistant</div>
