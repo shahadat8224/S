@@ -390,3 +390,64 @@ body {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===== FIX GRADIENT JITTER ===== */
+
+/* Replace or override your current gradient animation */
+.gradient-bg {
+    background: linear-gradient(
+        120deg,
+        #0f172a 0%,
+        #1a253f 25%,
+        #0f172a 50%,
+        #1a253f 75%,
+        #0f172a 100%
+    );
+    background-size: 200% 200%; /* Smaller size = smoother */
+    animation: smooth-bg-flow 20s linear infinite;
+    /* GPU acceleration */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: background-position;
+}
+
+@keyframes smooth-bg-flow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Force GPU rendering for smoothness */
+.parallax-section {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+
