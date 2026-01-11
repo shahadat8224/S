@@ -1,23 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script type="text/javascript">
-        if (window.location.hostname === "shahdat8224.github.io") {
-            window.location.replace("https://shahdat8224.vercel.app/");
-        }
-    </script>
-    <meta http-equiv="refresh" content="0; url=https://shahdat8224.vercel.app/">
-    <link rel="canonical" href="https://shahdat8224.vercel.app/" />
-
+    <!-- REMOVED the redirect scripts causing reload issues -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shahadat Islam Alif | Content Researcher & Language Influencer</title>
+    <title>Shahadat Islam Alif | Digital Marketing & Language Influencer</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="script.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0ea5e9 100%);
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+        }
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #0ea5e9, #3b82f6);
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
+        .loading-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #0ea5e9;
+            z-index: 10000;
+            transition: opacity 0.5s ease;
+        }
+        .text-gradient-animate {
+            background: linear-gradient(90deg, #0ea5e9, #3b82f6, #8b5cf6);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient 3s ease infinite;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .slide-in-up {
+            animation: slideUp 0.8s ease-out;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .slide-in-left {
+            animation: slideLeft 0.8s ease-out;
+        }
+        @keyframes slideLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .slide-in-right {
+            animation: slideRight 0.8s ease-out;
+        }
+        @keyframes slideRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(14, 165, 233, 0.2);
+        }
+        .btn-hover {
+            transition: all 0.3s ease;
+        }
+        .btn-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(14, 165, 233, 0.4);
+        }
+        .badge-blue {
+            background: linear-gradient(135deg, #0ea5e9, #3b82f6);
+        }
+        .badge-green {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.3), transparent);
+            margin: 0 auto;
+            width: 80%;
+        }
+        .language-flag {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .bengali-flag {
+            background: linear-gradient(135deg, #006a4e 50%, #f42a41 50%);
+        }
+        .english-flag {
+            background: linear-gradient(135deg, #012169 50%, #c8102e 50%);
+        }
+        .hindi-flag {
+            background: linear-gradient(135deg, #ff9933 33%, #ffffff 33%, #ffffff 66%, #138808 66%);
+        }
+        .ai-pill {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 24px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        .ai-pill:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        .vivo-ai-logo {
+            width: 16px;
+            height: 16px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>');
+            background-size: contain;
+        }
+        .welcome-bubble {
+            position: fixed;
+            bottom: 120px;
+            right: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            max-width: 200px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .welcome-bubble.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .welcome-bubble:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            right: 30px;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid #764ba2;
+        }
+        .scrollbar-hide {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .user-msg {
+            background: linear-gradient(135deg, #0ea5e9, #3b82f6);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 18px 18px 0 18px;
+            align-self: flex-end;
+            max-width: 85%;
+            margin-bottom: 8px;
+        }
+        .ai-msg {
+            background: rgba(30, 41, 59, 0.8);
+            color: #e2e8f0;
+            padding: 10px 14px;
+            border-radius: 18px 18px 18px 0;
+            align-self: flex-start;
+            max-width: 85%;
+            margin-bottom: 8px;
+            border: 1px solid rgba(14, 165, 233, 0.2);
+        }
+        .typing {
+            display: flex;
+            gap: 4px;
+            padding: 10px;
+            align-self: flex-start;
+        }
+        .typing span {
+            width: 8px;
+            height: 8px;
+            background: #0ea5e9;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+        .typing span:nth-child(2) { animation-delay: 0.2s; }
+        .typing span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+        .mobile-nav {
+            display: none;
+        }
+        .mobile-nav.active {
+            display: flex;
+        }
+    </style>
 </head>
 
 <body class="bg-[#0f172a] text-slate-300">
@@ -26,7 +235,7 @@
     <div class="loading-bar" id="loadingBar"></div>
 
     <nav class="sticky top-0 z-50 glass-card h-16 px-4 md:px-8 flex items-center justify-between">
-        <a href="#" class="text-xl font-bold text-white transition-all duration-300 transform hover:scale-105">
+        <a href="#home" class="text-xl font-bold text-white transition-all duration-300 transform hover:scale-105">
             Shahadat<span class="text-gradient-animate">Alif</span>
         </a>
 
@@ -35,6 +244,7 @@
             <a href="#about" class="hover:text-sky-400 text-sm font-medium">About</a>
             <a href="#experience" class="hover:text-sky-400 text-sm font-medium">Experience</a>
             <a href="#skills" class="hover:text-sky-400 text-sm font-medium">Skills</a>
+            <a href="#education" class="hover:text-sky-400 text-sm font-medium">Education</a>
             <a href="#contact" class="hover:text-sky-400 text-sm font-medium">Contact</a>
         </div>
         
@@ -51,6 +261,8 @@
             <a href="#home" class="hover:text-sky-400 py-2"><i class="fas fa-home mr-3"></i>Home</a>
             <a href="#about" class="hover:text-sky-400 py-2"><i class="fas fa-user-tie mr-3"></i>About</a>
             <a href="#experience" class="hover:text-sky-400 py-2"><i class="fas fa-briefcase mr-3"></i>Experience</a>
+            <a href="#skills" class="hover:text-sky-400 py-2"><i class="fas fa-tools mr-3"></i>Skills</a>
+            <a href="#education" class="hover:text-sky-400 py-2"><i class="fas fa-graduation-cap mr-3"></i>Education</a>
             <a href="#contact" class="hover:text-sky-400 py-2"><i class="fas fa-envelope mr-3"></i>Contact</a>
         </div>
     </nav>
@@ -59,9 +271,12 @@
         Hi! I'm Alif's AI. Want to see his projects? ✨
     </div>
 
+    <!-- Hero Section -->
     <section id="home" class="min-h-screen gradient-bg flex flex-col justify-center items-center text-center px-6 pt-20 parallax-section">
         <div class="mb-8 p-2 rounded-full bg-gradient-to-r from-sky-500 to-blue-500 animate-pulse profile-photo-container floating">
-            <img src="https://i.ibb.co.com/H0J2rv0/MY-photo.jpg" alt="Shahadat Islam Alif" class="w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full border-4 border-[#0f172a] object-cover shadow-2xl">
+            <img src="https://i.ibb.co.com/H0J2rv0/MY-photo.jpg" alt="Shahadat Islam Alif" 
+                 class="w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full border-4 border-[#0f172a] object-cover shadow-2xl"
+                 onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'">
         </div>
         
         <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 slide-in-up">
@@ -76,7 +291,7 @@
                 <i class="fas fa-language mr-2"></i>Language Influencer
             </span>
             <span class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full text-sm font-medium">
-                <i class="fas fa-chart-line mr-2 text-sky-400"></i>Sales & Marketing Expert
+                <i class="fas fa-chart-line mr-2"></i>Sales & Marketing Expert
             </span>
         </div>
         
@@ -106,6 +321,7 @@
 
     <div class="section-divider"></div>
 
+    <!-- About Section -->
     <section id="about" class="py-16 md:py-20 px-4 section">
         <div class="max-w-5xl mx-auto">
             <h2 class="text-3xl md:text-4xl font-bold text-white mb-8 md:mb-12 flex items-center slide-in-left">
@@ -115,20 +331,57 @@
                 <div class="glass-card p-6 md:p-8 rounded-2xl md:col-span-2 card-hover slide-in-left">
                     <h3 class="text-2xl font-bold text-white mb-6">Career Objective</h3>
                     <p class="text-lg mb-6 leading-relaxed">
-                        As a <span class="text-gradient-animate font-semibold">Content Researcher</span> and <span class="text-green-400 font-semibold">Language Influencer</span>, I thrive in dynamic environments where creativity meets strategy.
+                        As a <span class="text-gradient-animate font-semibold">Digital Marketing Specialist</span> and <span class="text-green-400 font-semibold">Language Influencer</span>, I thrive in dynamic environments where creativity meets strategy. My goal is to help businesses grow through innovative digital campaigns while leveraging my multilingual communication skills to bridge cultural gaps.
                     </p>
                     <p class="text-lg mb-6 leading-relaxed">
-                        With experience in sales management, marketing, and supervision, I bring a comprehensive understanding of business operations.
+                        With experience in sales management, marketing, and supervision, I bring a comprehensive understanding of business operations combined with technical skills in digital marketing and content creation.
                     </p>
+                    <div class="flex flex-wrap gap-4 mt-8">
+                        <div class="flex items-center bg-sky-500/10 px-4 py-2 rounded-full">
+                            <i class="fas fa-rocket text-sky-400 mr-2"></i><span class="font-medium">Growth Mindset</span>
+                        </div>
+                        <div class="flex items-center bg-sky-500/10 px-4 py-2 rounded-full">
+                            <i class="fas fa-users text-sky-400 mr-2"></i><span class="font-medium">Team Collaboration</span>
+                        </div>
+                        <div class="flex items-center bg-sky-500/10 px-4 py-2 rounded-full">
+                            <i class="fas fa-lightbulb text-sky-400 mr-2"></i><span class="font-medium">Creative Solutions</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="space-y-6 slide-in-right">
                     <div class="glass-card p-6 rounded-2xl card-hover">
                         <h3 class="text-xl font-bold text-white mb-4 flex items-center"><i class="fas fa-info-circle text-gradient-animate mr-3"></i>Quick Facts</h3>
                         <div class="space-y-3 text-sm">
-                            <p><i class="fas fa-map-marker-alt text-sky-400 mr-2"></i>Gazipur, Dhaka</p>
-                            <p><i class="fas fa-envelope text-sky-400 mr-2"></i>shahadatislamalf@gmail.com</p>
+                            <p><i class="fas fa-map-marker-alt text-sky-400 mr-2"></i>Gazipur, Dhaka, Bangladesh</p>
+                            <p><i class="fas fa-envelope text-sky-400 mr-2"></i>shahadatislam8224@gmail.com</p>
                             <p><i class="fas fa-phone text-sky-400 mr-2"></i>01320828224</p>
                             <p><i class="fas fa-calendar text-sky-400 mr-2"></i>Born: 27 Dec 2002</p>
+                        </div>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl card-hover">
+                        <h3 class="text-xl font-bold text-white mb-4 flex items-center"><i class="fas fa-globe-asia text-gradient-animate mr-3"></i>Language Proficiency</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <div class="language-flag bengali-flag"></div>
+                                <div>
+                                    <p class="font-medium">Bengali</p>
+                                    <p class="text-sm text-slate-500">Native Speaker</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="language-flag english-flag"></div>
+                                <div>
+                                    <p class="font-medium">English</p>
+                                    <p class="text-sm text-slate-500">Fluent - Reading, Writing, Speaking</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="language-flag hindi-flag"></div>
+                                <div>
+                                    <p class="font-medium">Hindi</p>
+                                    <p class="text-sm text-slate-500">Conversational Speaking</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -136,13 +389,289 @@
         </div>
     </section>
 
+    <div class="section-divider"></div>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-16 md:py-20 bg-[#1e293b]/30 px-4">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-8 md:mb-12 flex items-center slide-in-left">
+                <span class="text-gradient-animate mr-3"><i class="fas fa-briefcase"></i></span> Professional Experience
+            </h2>
+            <div class="relative">
+                <!-- Timeline line -->
+                <div class="absolute left-4 md:left-1/2 h-full w-0.5 bg-gradient-to-b from-sky-500/50 to-blue-500/50 transform md:-translate-x-1/2"></div>
+
+                <!-- Experience 1 -->
+                <div class="relative mb-12 md:flex items-center">
+                    <div class="absolute left-2 md:left-1/2 w-4 h-4 bg-sky-500 rounded-full transform md:-translate-x-1/2 z-10" style="box-shadow: 0 0 15px rgba(14, 165, 233, 0.7);"></div>
+                    <div class="glass-card ml-12 md:ml-0 md:w-5/12 md:pr-12 p-6 rounded-2xl card-hover">
+                        <div class="text-sky-400 font-semibold mb-1"><i class="fas fa-user-tie mr-2"></i>Sales & Leadership</div>
+                        <h3 class="text-xl font-bold text-white mb-2">Sales Manager</h3>
+                        <p class="text-slate-400 mb-2">Zero Zone Electronics, Gazipur</p>
+                        <p class="text-sm text-slate-500 mb-3">1 Year Experience</p>
+                        <p class="text-slate-300 leading-relaxed text-sm">Led sales operations, managed customer relationships, and developed strategies to increase market share in the competitive electronics retail sector.</p>
+                    </div>
+                    <div class="hidden md:block md:w-2/12 text-center text-slate-500 font-medium text-sm">2022-2023</div>
+                    <div class="md:w-5/12"></div>
+                </div>
+
+                <!-- Experience 2 -->
+                <div class="relative mb-12 md:flex items-center">
+                    <div class="absolute left-2 md:left-1/2 w-4 h-4 bg-blue-500 rounded-full transform md:-translate-x-1/2 z-10" style="box-shadow: 0 0 15px rgba(59, 130, 246, 0.7);"></div>
+                    <div class="hidden md:block md:w-5/12 md:pr-12"></div>
+                    <div class="hidden md:block md:w-2/12 text-center text-slate-500 font-medium text-sm">2022</div>
+                    <div class="glass-card ml-12 md:ml-0 md:w-5/12 md:pl-12 p-6 rounded-2xl card-hover">
+                        <div class="text-blue-400 font-semibold mb-1"><i class="fas fa-chart-line mr-2"></i>Digital Marketing</div>
+                        <h3 class="text-xl font-bold text-white mb-2">Marketing Officer</h3>
+                        <p class="text-slate-400 mb-2">Best Electronics Online</p>
+                        <p class="text-sm text-slate-500 mb-3">3 Months Experience</p>
+                        <p class="text-slate-300 leading-relaxed text-sm">Developed and implemented online marketing strategies for electronic products, managed social media campaigns, and analyzed digital marketing performance metrics.</p>
+                    </div>
+                </div>
+
+                <!-- Experience 3 -->
+                <div class="relative mb-12 md:flex items-center">
+                    <div class="absolute left-2 md:left-1/2 w-4 h-4 bg-sky-500 rounded-full transform md:-translate-x-1/2 z-10" style="box-shadow: 0 0 15px rgba(14, 165, 233, 0.7);"></div>
+                    <div class="glass-card ml-12 md:ml-0 md:w-5/12 md:pr-12 p-6 rounded-2xl card-hover">
+                        <div class="text-sky-400 font-semibold mb-1"><i class="fas fa-clipboard-check mr-2"></i>Supervisory Role</div>
+                        <h3 class="text-xl font-bold text-white mb-2">Assistant Supervisor</h3>
+                        <p class="text-slate-400 mb-2">Decent Electro LTD</p>
+                        <p class="text-sm text-slate-500 mb-3">3 Months Experience</p>
+                        <p class="text-slate-300 leading-relaxed text-sm">Assisted in supervising operations, coordinating team activities, and ensuring quality standards in electronic manufacturing processes.</p>
+                    </div>
+                    <div class="hidden md:block md:w-2/12 text-center text-slate-500 font-medium text-sm">2021</div>
+                    <div class="md:w-5/12"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 md:py-20 px-4">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-8 md:mb-12 flex items-center slide-in-left">
+                <span class="text-gradient-animate mr-3"><i class="fas fa-tools"></i></span> Skills & Certifications
+            </h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Skills Bars -->
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium">Digital Marketing</span>
+                            <span class="text-sky-400 font-bold">90%</span>
+                        </div>
+                        <div class="w-full bg-slate-700 rounded-full h-2">
+                            <div class="skill-bar bg-gradient-to-r from-sky-500 to-blue-400 h-2 rounded-full" style="width: 90%; transition: width 1.5s ease-in-out;"></div>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-1">Google Certified: Fundamentals of Digital Marketing</p>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium">Sales & Marketing</span>
+                            <span class="text-sky-400 font-bold">85%</span>
+                        </div>
+                        <div class="w-full bg-slate-700 rounded-full h-2">
+                            <div class="skill-bar bg-gradient-to-r from-sky-500 to-blue-400 h-2 rounded-full" style="width: 85%; transition: width 1.5s ease-in-out;"></div>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-1">Retail management, customer relations, strategy development</p>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium">Multilingual Communication</span>
+                            <span class="text-green-400 font-bold">95%</span>
+                        </div>
+                        <div class="w-full bg-slate-700 rounded-full h-2">
+                            <div class="skill-bar bg-gradient-to-r from-green-500 to-emerald-400 h-2 rounded-full" style="width: 95%; transition: width 1.5s ease-in-out;"></div>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-1">Bengali, English, Hindi - Content creation across languages</p>
+                    </div>
+                </div>
+                
+                <!-- Skill Tags & Certifications -->
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-6">Technical & Professional Skills</h3>
+                    <div class="flex flex-wrap gap-2 mb-8">
+                        <span class="px-3 py-1.5 bg-[#0f172a] border border-sky-500/30 rounded-full text-sky-400 text-xs font-medium">Google Analytics</span>
+                        <span class="px-3 py-1.5 bg-[#0f172a] border border-sky-500/30 rounded-full text-sky-400 text-xs font-medium">Microsoft Office</span>
+                        <span class="px-3 py-1.5 bg-[#0f172a] border border-sky-500/30 rounded-full text-sky-400 text-xs font-medium">HTML/CSS</span>
+                        <span class="px-3 py-1.5 bg-[#0f172a] border border-sky-500/30 rounded-full text-sky-400 text-xs font-medium">WordPress</span>
+                        <span class="px-3 py-1.5 bg-[#0f172a] border border-green-500/30 rounded-full text-green-400 text-xs font-medium">Content Creation</span>
+                        <span class="px-3 py-1.5 bg-[#0f172a] border border-green-500/30 rounded-full text-green-400 text-xs font-medium">Cross-cultural Communication</span>
+                        <span class="px-3 py-1.5 bg-[#0f172a] border border-sky-500/30 rounded-full text-sky-400 text-xs font-medium">Social Media Marketing</span>
+                        <span class="px-3 py-1.5 bg-[#0f172a] border border-sky-500/30 rounded-full text-sky-400 text-xs font-medium">Team Leadership</span>
+                    </div>
+                    
+                    <!-- Certification Card -->
+                    <div class="glass-card p-6 rounded-2xl card-hover">
+                        <h4 class="font-bold text-white mb-3 flex items-center">
+                            <i class="fas fa-certificate text-yellow-400 mr-2"></i> Google Certification
+                        </h4>
+                        <p class="text-slate-300 mb-2 text-sm">Fundamentals of Digital Marketing</p>
+                        <p class="text-xs text-slate-500">Certificate ID: E5MPT5DRM</p>
+                        <p class="text-xs text-slate-400 mt-3">Completed comprehensive training in digital marketing fundamentals including SEO, social media, email marketing, and analytics.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Education Section -->
+    <section id="education" class="py-16 md:py-20 bg-[#1e293b]/30 px-4">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-8 md:mb-12 flex items-center slide-in-left">
+                <span class="text-gradient-animate mr-3"><i class="fas fa-graduation-cap"></i></span> Education
+            </h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="glass-card p-6 rounded-2xl card-hover">
+                    <div class="text-sky-400 text-3xl mb-4">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Bachelor of Social Science</h3>
+                    <p class="text-slate-400 mb-2 text-sm">Bhawal Badre Alam Government University</p>
+                    <p class="text-xs text-slate-500">Group: Humanities</p>
+                    <p class="text-xs text-slate-500 mt-2">Status: Ongoing</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl card-hover">
+                    <div class="text-sky-400 text-3xl mb-4">
+                        <i class="fas fa-school"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Higher Secondary Certificate</h3>
+                    <p class="text-slate-400 mb-2 text-sm">Kazi Azim Uddin University College</p>
+                    <p class="text-xs text-slate-500">Group: Humanities</p>
+                    <p class="text-xs text-slate-500">Board: Dhaka</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl card-hover">
+                    <div class="text-sky-400 text-3xl mb-4">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Secondary School Certificate</h3>
+                    <p class="text-slate-400 mb-2 text-sm">B.M.T.F High School</p>
+                    <p class="text-xs text-slate-500">Group: Humanities</p>
+                    <p class="text-xs text-slate-500">Board: Dhaka</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 md:py-20 px-4">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-8 text-center slide-in-up">Let's Connect</h2>
+            <p class="text-lg md:text-xl text-slate-400 mb-8 md:mb-12 text-center max-w-2xl mx-auto">Open to collaboration, networking, and professional opportunities.</p>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Contact Information -->
+                <div class="space-y-6 slide-in-left">
+                    <div class="glass-card p-6 rounded-2xl card-hover">
+                        <h3 class="text-xl font-bold text-white mb-6">Contact Information</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="bg-sky-500/20 p-2 rounded-lg mr-3">
+                                    <i class="fas fa-map-marker-alt text-sky-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">Mailing Address</h4>
+                                    <p class="text-slate-400 text-sm">C/O: MD. Saiful Islam</p>
+                                    <p class="text-slate-400 text-sm">Marialy, Bilashpur, Thana: Joydebpur</p>
+                                    <p class="text-slate-400 text-sm">Gazipur Sadar-1700, Bangladesh</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-sky-500/20 p-2 rounded-lg mr-3">
+                                    <i class="fas fa-phone text-sky-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">Direct Contact</h4>
+                                    <p class="text-slate-400 text-sm">Phone: 01320828224</p>
+                                    <p class="text-slate-400 text-sm">Email: shahadatislam8224@gmail.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- References -->
+                    <div class="glass-card p-6 rounded-2xl card-hover">
+                        <h4 class="font-bold text-white mb-4">Professional References</h4>
+                        <div class="space-y-4">
+                            <div class="bg-slate-800/50 p-3 rounded-lg">
+                                <p class="text-slate-400 text-xs mb-1">Click to reveal reference 1</p>
+                                <button onclick="revealReference(1)" class="text-sky-400 hover:text-sky-300 text-xs font-medium">
+                                    <i class="fas fa-eye mr-1"></i> Show Details
+                                </button>
+                                <div id="reference1" class="hidden mt-3 text-slate-400 text-xs">
+                                    <p><strong>Imran Ahammed Shohel</strong></p>
+                                    <p>Lecturer, Kazi Azim Uddin University College</p>
+                                    <p>Cell: 01745066616</p>
+                                </div>
+                            </div>
+                            <div class="bg-slate-800/50 p-3 rounded-lg">
+                                <p class="text-slate-400 text-xs mb-1">Click to reveal reference 2</p>
+                                <button onclick="revealReference(2)" class="text-sky-400 hover:text-sky-300 text-xs font-medium">
+                                    <i class="fas fa-eye mr-1"></i> Show Details
+                                </button>
+                                <div id="reference2" class="hidden mt-3 text-slate-400 text-xs">
+                                    <p><strong>Mahidul Islam</strong></p>
+                                    <p>Assistant Manager - Best Buy (Operation), Pran RFL Center</p>
+                                    <p>Cell: 01844658167</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="glass-card p-6 md:p-8 rounded-2xl card-hover slide-in-right">
+                    <form id="contactForm" class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-slate-400 mb-2 text-sm">Your Name</label>
+                            <input type="text" id="name" class="w-full bg-[#0f172a] border border-sky-500/30 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-sky-500 text-white text-sm" placeholder="Enter your name">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-slate-400 mb-2 text-sm">Email Address</label>
+                            <input type="email" id="email" class="w-full bg-[#0f172a] border border-sky-500/30 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-sky-500 text-white text-sm" placeholder="your@email.com">
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-slate-400 mb-2 text-sm">Subject</label>
+                            <select id="subject" class="w-full bg-[#0f172a] border border-sky-500/30 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-sky-500 text-white text-sm">
+                                <option value="">Select a reason</option>
+                                <option value="collaboration">Collaboration Opportunity</option>
+                                <option value="networking">Professional Networking</option>
+                                <option value="opportunity">Job Opportunity</option>
+                                <option value="question">General Question</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-slate-400 mb-2 text-sm">Message</label>
+                            <textarea id="message" rows="3" class="w-full bg-[#0f172a] border border-sky-500/30 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-sky-500 text-white text-sm" placeholder="Your message here..."></textarea>
+                        </div>
+                        <button type="button" id="contactEmailBtn" class="w-full bg-gradient-to-r from-sky-600 to-blue-500 hover:from-sky-700 hover:to-blue-600 text-white font-semibold py-3 rounded-lg transition-all text-sm">
+                            <i class="fas fa-paper-plane mr-2"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer class="py-8 glass-card border-t border-sky-500/20 text-center">
         <p class="text-white font-bold">&copy; 2024 Shahadat Islam Alif</p>
+        <p class="text-sm text-slate-400 mt-2">Digital Marketing Specialist | Language Influencer | Sales & Marketing Professional</p>
+        <div class="mt-4">
+            <p class="text-xs text-sky-400/70"><i class="fas fa-quote-left mr-1"></i>"Seeking dynamic environments where creativity meets strategy for sustained growth and development."</p>
+        </div>
     </footer>
 
+    <!-- Chat Window -->
     <div id="chat-window" class="fixed bottom-24 right-6 w-[320px] md:w-[380px] h-[450px] bg-[#1e293b] border border-slate-700 rounded-2xl shadow-2xl z-[1000] flex flex-col overflow-hidden" style="display: none;">
         <div class="bg-gradient-to-r from-sky-600 to-purple-600 p-4 flex justify-between items-center">
-            <span class="text-white font-bold flex items-center"><i class="fas fa-robot mr-2"></i> Alif's AI Guide</span>
+            <span class="text-white font-bold flex items-center text-sm"><i class="fas fa-robot mr-2"></i> Alif's AI Guide</span>
             <button onclick="toggleChat()" class="text-white hover:text-red-300"><i class="fas fa-times"></i></button>
         </div>
         <div id="chat-content" class="flex-1 p-4 overflow-y-auto flex flex-col gap-3 text-sm scrollbar-hide">
@@ -158,5 +687,232 @@
         </div>
     </div>
 
+    <!-- JavaScript -->
+    <script>
+        // Page Load & Progress
+        window.addEventListener('load', () => {
+            const loadingBar = document.getElementById('loadingBar');
+            if (loadingBar) {
+                setTimeout(() => { loadingBar.style.opacity = '0'; }, 500);
+                setTimeout(() => { loadingBar.style.display = 'none'; }, 800);
+            }
+        });
+
+        // Scroll Progress
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.getElementById('scrollProgress');
+            if (scrollProgress) {
+                const winScroll = document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                scrollProgress.style.width = scrolled + '%';
+            }
+        });
+
+        // Welcome Bubble (4 second delay)
+        setTimeout(() => {
+            const welcomeBubble = document.getElementById('welcome-bubble');
+            if (welcomeBubble) welcomeBubble.classList.add('show');
+        }, 4000);
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        
+        if (mobileMenuBtn && mobileNav) {
+            mobileMenuBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const isActive = mobileNav.classList.toggle('active');
+                mobileNav.classList.toggle('hidden');
+                const icon = mobileMenuBtn.querySelector('i');
+                if (icon) {
+                    icon.className = isActive ? 'fas fa-times text-lg' : 'fas fa-ellipsis-v text-lg';
+                }
+            });
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (mobileNav && !mobileNav.contains(e.target) && e.target !== mobileMenuBtn) {
+                mobileNav.classList.remove('active');
+                mobileNav.classList.add('hidden');
+                const icon = mobileMenuBtn?.querySelector('i');
+                if (icon) icon.className = 'fas fa-ellipsis-v text-lg';
+            }
+        });
+
+        // Email Copy Functionality
+        const emailAddress = 'shahadatislam8224@gmail.com';
+        
+        function handleEmailCopy(button) {
+            if (!button) return;
+            const originalText = button.innerHTML;
+            
+            navigator.clipboard.writeText(emailAddress).then(() => {
+                button.classList.add('bg-green-600');
+                button.innerHTML = '<i class="fas fa-check mr-2"></i> Email Copied!';
+                
+                setTimeout(() => {
+                    button.classList.remove('bg-green-600');
+                    button.innerHTML = originalText;
+                    console.log("Email copied to clipboard");
+                }, 2000);
+            }).catch(err => {
+                console.error("Failed to copy email:", err);
+                alert('Please copy the email manually: ' + emailAddress);
+            });
+        }
+
+        // Email buttons
+        const emailBtn = document.getElementById('emailBtn');
+        const contactEmailBtn = document.getElementById('contactEmailBtn');
+        
+        if (emailBtn) {
+            emailBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                handleEmailCopy(emailBtn);
+            });
+        }
+        
+        if (contactEmailBtn) {
+            contactEmailBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Prevent form submission
+                e.stopPropagation();
+                
+                // For contact form button, show message instead of copying
+                const name = document.getElementById('name')?.value;
+                const email = document.getElementById('email')?.value;
+                const message = document.getElementById('message')?.value;
+                
+                if (!name || !email || !message) {
+                    alert('Please fill all fields before sending.');
+                    return;
+                }
+                
+                alert('Thank you for your message! I will respond within 24-48 hours.');
+                
+                // Reset form
+                const form = document.getElementById('contactForm');
+                if (form) form.reset();
+            });
+        }
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const target = document.querySelector(targetId);
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    // Close mobile menu if open
+                    if (mobileNav) {
+                        mobileNav.classList.remove('active');
+                        mobileNav.classList.add('hidden');
+                    }
+                }
+            });
+        });
+
+        // Prevent Enter key from submitting forms
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && e.target.tagName === 'INPUT' && e.target.form) {
+                e.preventDefault();
+            }
+        });
+
+        // Reference reveal function
+        window.revealReference = function(num) {
+            const ref = document.getElementById('reference' + num);
+            if (ref) {
+                ref.classList.toggle('hidden');
+            }
+        };
+
+        // AI Chat Functions
+        window.toggleChat = function() {
+            const chat = document.getElementById('chat-window');
+            const bubble = document.getElementById('welcome-bubble');
+            if (bubble) bubble.classList.remove('show');
+            
+            if (chat) {
+                const isHidden = (chat.style.display === 'none' || chat.style.display === '');
+                chat.style.display = isHidden ? 'flex' : 'none';
+            }
+        };
+
+        window.sendToGemini = function() {
+            const input = document.getElementById('user-input');
+            const content = document.getElementById('chat-content');
+            if (!input || !content || !input.value.trim()) return;
+
+            const userMessage = input.value.trim();
+            content.innerHTML += `<div class="user-msg">${userMessage}</div>`;
+            input.value = '';
+
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'typing';
+            typingDiv.id = 'typing-indicator';
+            typingDiv.innerHTML = '<span></span><span></span><span></span>';
+            content.appendChild(typingDiv);
+            content.scrollTop = content.scrollHeight;
+
+            // Simulate AI response (you can replace with actual API call)
+            setTimeout(() => {
+                document.getElementById('typing-indicator')?.remove();
+                
+                const responses = [
+                    "Shahadat has expertise in digital marketing, sales management, and multilingual communication.",
+                    "He completed Google's Digital Marketing certification and has experience in electronics retail.",
+                    "Shahadat is fluent in Bengali, English, and Hindi, making him effective in cross-cultural communication.",
+                    "His career objective is to work in dynamic environments where creativity meets strategy.",
+                    "He has experience as a Sales Manager, Marketing Officer, and Assistant Supervisor."
+                ];
+                
+                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                content.innerHTML += `<div class="ai-msg">${randomResponse}</div>`;
+                content.scrollTop = content.scrollHeight;
+            }, 1500);
+        };
+
+        // Enter key for chat
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && document.activeElement.id === 'user-input') {
+                e.preventDefault();
+                sendToGemini();
+            }
+        });
+
+        // Animate skill bars on scroll
+        const observerOptions = {
+            threshold: 0.5
+        };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillBars = entry.target.querySelectorAll('.skill-bar');
+                    skillBars.forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 300);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const skillsSection = document.getElementById('skills');
+            if(skillsSection) observer.observe(skillsSection);
+        });
+    </script>
 </body>
 </html>
