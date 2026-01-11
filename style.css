@@ -320,33 +320,3 @@ body {
 
 
 
-/* ===== REMOVE FLOATING AI MESSAGE ===== */
-/* This will hide the "Hi! I'm Alif's AI" message */
-
-/* Hide all potential chat/ai widgets */
-#chatbot, 
-.chatbot, 
-.ai-widget, 
-.floating-chat,
-.chat-widget,
-.ai-assistant,
-[class*="chat"],
-[class*="ai"],
-[class*="bot"] {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-}
-
-/* Hide any fixed positioned elements that might contain the message */
-div[style*="position: fixed"],
-div[style*="position:absolute"] {
-    display: none !important;
-}
-
-/* Specifically target the text */
-*:contains("Hi! I'm Alif's AI"),
-*:contains("Want to see his projects") {
-    display: none !important;
-}
-/* ===== END ===== */
