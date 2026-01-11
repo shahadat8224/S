@@ -1,14 +1,4 @@
-/**
- * SHAHADAT ALIF - SITE LOGIC
- */
-
-// 1. STRICT REDIRECT (Only runs if exactly on GitHub Pages)
-if (window.location.hostname.includes("github.io")) {
-    window.location.replace("https://shahdat8224.vercel.app/");
-}
-
 document.addEventListener('DOMContentLoaded', function() {
-    // UI Element Selectors
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileNav = document.getElementById('mobileNav');
     const emailBtn = document.getElementById('emailBtn');
@@ -16,31 +6,32 @@ document.addEventListener('DOMContentLoaded', function() {
     const scrollProgress = document.getElementById('scrollProgress');
     const loadingBar = document.getElementById('loadingBar');
     const welcomeBubble = document.getElementById('welcome-bubble');
-    const emailAddress = 'shahadatislamalf@gmail.com';
+    const contactForm = document.getElementById('contactForm');
+    const emailAddress = 'shahadatislam8224@gmail.com';
 
-    // Page Load & Progress
-    window.addEventListener('load', () => {
-        if (loadingBar) {
+    if (loadingBar) {
+        window.addEventListener('load', () => {
             setTimeout(() => { loadingBar.style.opacity = '0'; }, 500);
             setTimeout(() => { loadingBar.style.display = 'none'; }, 800);
+        });
+    }
+
+    window.addEventListener('scroll', () => {
+        if (scrollProgress) {
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            scrollProgress.style.width = scrolled + '%';
         }
     });
 
-    window.addEventListener('scroll', () => {
-        const winScroll = document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
-        if (scrollProgress) scrollProgress.style.width = scrolled + '%';
-    });
-
-    // Welcome Bubble (4 second delay)
     setTimeout(() => {
         if (welcomeBubble) welcomeBubble.classList.add('show');
     }, 4000);
 
-    // Mobile Menu Toggle
     if (mobileMenuBtn && mobileNav) {
         mobileMenuBtn.addEventListener('click', (e) => {
+            e.preventDefault();
             e.stopPropagation();
             const isActive = mobileNav.classList.toggle('active');
             mobileNav.classList.toggle('hidden');
@@ -51,38 +42,70 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Email Copy Functionality
+    document.addEventListener('click', (e) => {
+        if (mobileNav && !mobileNav.contains(e.target) && e.target !== mobileMenuBtn) {
+            mobileNav.classList.remove('active');
+            mobileNav.classList.add('hidden');
+            const icon = mobileMenuBtn?.querySelector('i');
+            if (icon) icon.className = 'fas fa-ellipsis-v text-lg';
+        }
+    });
+
     function handleEmailCopy(button) {
         if (!button) return;
         const originalText = button.innerHTML;
         
         navigator.clipboard.writeText(emailAddress).then(() => {
-            button.classList.add('email-copied');
+            button.classList.add('bg-green-600');
             button.innerHTML = '<i class="fas fa-check mr-2"></i> Email Copied!';
             
             setTimeout(() => {
-                button.classList.remove('email-copied');
+                button.classList.remove('bg-green-600');
                 button.innerHTML = originalText;
-                // Removed the 'confirm' box as it can cause focus issues/reloads in some browsers
-                console.log("Email copied to clipboard");
             }, 2000);
+        }).catch(err => {
+            alert('Please copy the email manually: ' + emailAddress);
         });
     }
 
-    if (emailBtn) emailBtn.addEventListener('click', () => handleEmailCopy(emailBtn));
-    if (contactEmailBtn) contactEmailBtn.addEventListener('click', () => handleEmailCopy(contactEmailBtn));
+    if (emailBtn) {
+        emailBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            handleEmailCopy(emailBtn);
+        });
+    }
+    
+    if (contactEmailBtn && contactForm) {
+        contactEmailBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const name = document.getElementById('name')?.value;
+            const email = document.getElementById('email')?.value;
+            const message = document.getElementById('message')?.value;
+            
+            if (!name || !email || !message) {
+                alert('Please fill all fields before sending.');
+                return;
+            }
+            
+            alert('Thank you for your message! I will respond within 24-48 hours.');
+            contactForm.reset();
+        });
+    }
 
-    // Smooth Scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const target = document.querySelector(targetId);
             if (target) {
                 window.scrollTo({
                     top: target.offsetTop - 80,
                     behavior: 'smooth'
                 });
-                // Close mobile menu if open
                 if (mobileNav) {
                     mobileNav.classList.remove('active');
                     mobileNav.classList.add('hidden');
@@ -90,10 +113,41 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && e.target.tagName === 'INPUT' && e.target.form) {
+            e.preventDefault();
+        }
+    });
+
+    const observerOptions = { threshold: 0.5 };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const skillBars = entry.target.querySelectorAll('.skill-bar');
+                skillBars.forEach(bar => {
+                    const width = bar.style.width;
+                    bar.style.width = '0';
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 300);
+                });
+            }
+        });
+    }, observerOptions);
+
+    const skillsSection = document.getElementById('skills');
+    if(skillsSection) observer.observe(skillsSection);
 });
 
-// AI Chat Logic
-function toggleChat() {
+window.revealReference = function(num) {
+    const ref = document.getElementById('reference' + num);
+    if (ref) {
+        ref.classList.toggle('hidden');
+    }
+};
+
+window.toggleChat = function() {
     const chat = document.getElementById('chat-window');
     const bubble = document.getElementById('welcome-bubble');
     if (bubble) bubble.classList.remove('show');
@@ -102,9 +156,9 @@ function toggleChat() {
         const isHidden = (chat.style.display === 'none' || chat.style.display === '');
         chat.style.display = isHidden ? 'flex' : 'none';
     }
-}
+};
 
-async function sendToGemini() {
+window.sendToGemini = async function() {
     const input = document.getElementById('user-input');
     const content = document.getElementById('chat-content');
     if (!input || !content || !input.value.trim()) return;
@@ -133,15 +187,14 @@ async function sendToGemini() {
         content.innerHTML += `<div class="ai-msg">${aiReply}</div>`;
     } catch (error) {
         document.getElementById('typing-indicator')?.remove();
-        content.innerHTML += `<div class="ai-msg" style="color: #ef4444;">Connection lost.</div>`;
+        content.innerHTML += `<div class="ai-msg">Connection lost. Please try again.</div>`;
     }
     content.scrollTop = content.scrollHeight;
-}
+};
 
-// Support Enter Key without Reload
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' && document.activeElement.id === 'user-input') {
-        e.preventDefault(); // STOPS RELOAD
+        e.preventDefault();
         sendToGemini();
     }
 });
