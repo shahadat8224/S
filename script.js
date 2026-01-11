@@ -1,10 +1,6 @@
 
 
-  // This checks if the user is on your GitHub link
-  if (window.location.hostname === "shahdat8224.github.io") {
-    // If yes, it jumps to your new Vercel link instantly
-    window.location.href = "https://shahdat8224.vercel.app";
-  }
+ 
     
 <!-- JavaScript for enhanced animations and interactions -->
   
