@@ -331,18 +331,62 @@ body {
 
 
 
-
-
-
-
-
-
 /* Hide the floating AI welcome bubble */
 #welcome-bubble {
     display: none !important;
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Specific right-to-left color flow */
+.color-flow-bg {
+    position: relative;
+    overflow: hidden;
+}
+
+.color-flow-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(14, 165, 233, 0.1),
+        rgba(59, 130, 246, 0.2),
+        rgba(14, 165, 233, 0.1),
+        transparent
+    );
+    animation: color-sweep 8s ease-in-out infinite;
+    z-index: -1;
+}
+
+@keyframes color-sweep {
+    0% {
+        transform: translateX(-100%) skewX(-15deg);
+    }
+    100% {
+        transform: translateX(100%) skewX(-15deg);
+    }
+}
 
 
 
